@@ -1,0 +1,17 @@
+<nav class="navbar">
+  <div class="navbar-logo">
+    <a routerLink="/home">BilimAl</a>
+  </div>
+
+  <ul class="navbar-links">
+    <li><a routerLink="/courses">Курсы</a></li>
+    <li><a routerLink="/categories">Категории</a></li>
+    <li><a routerLink="/my-courses">Мои курсы</a></li>
+  </ul>
+
+  <div class="navbar-auth">
+    <button *ngIf="!authService.isAuthenticated()" routerLink="/login" class="btn btn-sm">Вход</button>
+    <button *ngIf="!authService.isAuthenticated()" routerLink="/register" class="btn btn-sm btn-outline">Регистрация</button>
+    <button *ngIf="authService.isAuthenticated()" (click)="logout()" class="btn btn-sm btn-outline">Выйти</button>
+  </div>
+</nav>

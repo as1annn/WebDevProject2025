@@ -1,0 +1,32 @@
+<div class="auth-container">
+  <h2>Вход в аккаунт</h2>
+
+  <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+    <input
+      type="text"
+      name="username"
+      [(ngModel)]="username"
+      placeholder="Имя пользователя"
+      required
+    />
+    <input
+      type="password"
+      name="password"
+      [(ngModel)]="password"
+      placeholder="Пароль"
+      required
+    />
+
+    <button type="submit" class="btn btn-primary">Войти</button>
+  </form>
+
+  <p class="link-note">
+    Нет аккаунта?
+    <a routerLink="/register">Зарегистрироваться</a>
+  </p>
+
+  <!-- ✅ Используем errorMessage -->
+  <div *ngIf="errorMessage" class="error-msg">
+    {{ errorMessage }}
+  </div>
+</div>

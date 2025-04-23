@@ -1,0 +1,24 @@
+<div class="courses-page">
+  <h2>Все курсы</h2>
+
+  <div *ngIf="courses?.length; else noCourses">
+    <div class="course-grid">
+      <div class="course-card" *ngFor="let course of courses">
+        <h3>{{ course.title }}</h3>
+        <p>{{ course.description }}</p>
+
+        <div class="course-meta">
+          <span><strong>Категория:</strong> {{ course.category || 'Без категории' }}</span><br />
+<span><strong>Автор:</strong> {{ course.author || 'Неизвестно' }}</span>
+
+        </div>
+
+        <a class="btn btn-sm btn-primary" [routerLink]="['/courses', course.id]">Подробнее</a>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noCourses>
+    <p>Курсы пока не найдены.</p>
+  </ng-template>
+</div>

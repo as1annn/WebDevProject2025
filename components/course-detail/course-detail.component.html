@@ -1,0 +1,47 @@
+<div class="course-detail" *ngIf="course">
+    <div class="course-header">
+      <h1>{{ course.title }}</h1>
+      <p>{{ course.description }}</p>
+  
+      <div class="course-meta">
+        <span><strong>Категория:</strong> {{ course.category || 'Без категории' }}</span><br />
+        <span><strong>Автор:</strong> {{ course.author || 'Неизвестно' }}</span>
+      </div>
+  
+      <button class="btn btn-primary" (click)="enroll()">Записаться</button>
+    </div>
+  
+    <div class="course-content" *ngIf="course.modules?.length">
+      <h2>Программа курса</h2>
+  
+      <div class="module" *ngFor="let module of course.modules">
+        <h3>{{ module.title }}</h3>
+        <ul>
+          <li *ngFor="let lesson of module.lessons">
+            <p style="font-size: 12px; color: gray;">
+              video_url: {{ lesson.video_url }}
+            </p>
+            <strong>{{ lesson.title }}</strong>
+  
+            <!-- ✅ Показываем видео только если video_url есть -->
+            <div *ngIf="lesson.video_url; else noAccess">
+              <video width="600" controls>
+                <source [src]="lesson.video_url" type="video/mp4" />
+                Ваш браузер не поддерживает видео.
+              </video>
+            </div>
+  
+            <!-- 🟥 Сообщение, если нет доступа -->
+            <ng-template #noAccess>
+              <p class="no-access-msg">⚠️ Чтобы посмотреть видео, вы должны записаться на курс.</p>
+            </ng-template>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="!course" class="loading">
+    Загрузка курса...
+  </div>
+  

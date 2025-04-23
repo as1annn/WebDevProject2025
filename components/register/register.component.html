@@ -1,0 +1,32 @@
+<div class="auth-container">
+  <h2>Регистрация</h2>
+
+  <form (ngSubmit)="register()" #registerForm="ngForm">
+    <input
+      type="text"
+      name="username"
+      [(ngModel)]="username"
+      placeholder="Имя пользователя"
+      required
+    />
+
+    <input
+      type="password"
+      name="password"
+      [(ngModel)]="password"
+      placeholder="Пароль"
+      required
+    />
+
+    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+  </form>
+
+  <p class="link-note">
+    Уже есть аккаунт?
+    <a routerLink="/login">Войти</a>
+  </p>
+
+  <div *ngIf="error" class="error-msg">
+    {{ error }}
+  </div>
+</div>
